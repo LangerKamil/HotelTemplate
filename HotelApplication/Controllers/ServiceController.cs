@@ -32,7 +32,7 @@ namespace HotelApplication.Controllers
             return RedirectToAction("Customers", "Service");
         }
 
-        [HttpPost]
+        //[HttpPost]
         public ActionResult NewForm()
         {
             var customer = new Customer();
@@ -80,7 +80,7 @@ namespace HotelApplication.Controllers
             return View(viewModel);
         }
 
-        [HttpPut]
+        //[HttpPut]
         public ActionResult CustomerDetails(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -106,20 +106,9 @@ namespace HotelApplication.Controllers
         public ActionResult Edit(Customer customer)
         {
 
-            //if (!ModelState.IsValid)
-            //{
-            //    var viewModel = new CustomerFormViewModel
-            //    {
-            //        Customer = customer,
-            //        Rooms = _context.Rooms.ToList(),
-            //        Genders = _context.Genders.ToList()
-            //    };
-            //return View("CustomerDetails",viewModel);
-            //}
-
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
 
-            Mapper.Map(customerInDb, customer);
+            Mapper.Map(customer, customerInDb);
 
             _context.SaveChanges();
 

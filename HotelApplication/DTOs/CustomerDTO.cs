@@ -24,6 +24,8 @@ namespace HotelApplication.DTOs
 
         public GenderDTO Gender { get; set; }
 
+        public byte GenderId { get; set; }
+
 
     }
 }

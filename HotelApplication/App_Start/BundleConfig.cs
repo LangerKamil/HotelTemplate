@@ -14,6 +14,7 @@ namespace HotelApplication
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/datatables/jquery.datatables.js",
+                        "~/Scripts/datepicker/js/bootstrap-datepicker.js",
                         "~/Scripts/datatables/datatables.bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,6 +28,7 @@ namespace HotelApplication
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/content/datatables/css/datatables.bootstrap.css",
+                      "~/Scripts/datepicker/css/datepicker.css",
                       "~/Content/site.css"));
         }
     }

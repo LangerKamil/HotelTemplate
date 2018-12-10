@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201812040527257_MakeFirstNameRequired.Designer.cs">
       <DependentUpon>201812040527257_MakeFirstNameRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812101212583_AddingGenderIdtoCustomer.cs" />
+    <Compile Include="Migrations\201812101212583_AddingGenderIdtoCustomer.Designer.cs">
+      <DependentUpon>201812101212583_AddingGenderIdtoCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -393,6 +397,7 @@
     </Content>
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Scripts\datepicker\less\datepicker.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -458,6 +463,8 @@
     <Content Include="Scripts\DataTables\responsive.foundation.min.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.js" />
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
+    <Content Include="Scripts\datepicker\css\datepicker.css" />
+    <Content Include="Scripts\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -547,6 +554,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812040527257_MakeFirstNameRequired.resx">
       <DependentUpon>201812040527257_MakeFirstNameRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101212583_AddingGenderIdtoCustomer.resx">
+      <DependentUpon>201812101212583_AddingGenderIdtoCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

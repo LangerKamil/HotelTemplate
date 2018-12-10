@@ -11,6 +11,7 @@ namespace HotelApplication.ViewModels
         public IEnumerable<Gender> Genders { get; set; }
         public List<Room> Rooms { get; set; }
         public Customer Customer { get; set; }
+        public Room Room { get; set; }
         public List<RoomType> RoomTypes { get; set; }
     }
 }

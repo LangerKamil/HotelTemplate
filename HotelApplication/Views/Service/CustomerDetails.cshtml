@@ -13,7 +13,7 @@
 {
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.Gender)
-        @Html.DropDownListFor(c => c.Customer.Gender, new SelectList(Model.Genders, "Id", "Name"), "", new { @class = "form-control" })
+        @Html.DropDownListFor(c => c.Customer.GenderId, new SelectList(Model.Genders, "Id", "Name"), new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.FirstName)
@@ -43,6 +43,7 @@
     @Html.HiddenFor(c => c.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="/Service/Customers" class="btn btn-danger">Cancel</a>
+
 
 
 }

@@ -15,6 +15,7 @@ namespace HotelApplication.App_Start
             // Domain to DTO
             Mapper.CreateMap<Customer, CustomerDTO>();
             Mapper.CreateMap<Gender, GenderDTO>();
+            Mapper.CreateMap<Customer, Customer>();
 
             // DTO to Domain
             Mapper.CreateMap<CustomerDTO, Customer>();

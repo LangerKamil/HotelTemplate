@@ -39,14 +39,17 @@ namespace HotelApplication.Controllers
         public ActionResult Booking()
         {
             var customer = new Customer();
-            var room = _context.Rooms.ToList();
+            var rooms = _context.Rooms.ToList();
             var gender = _context.Genders.ToList();
+            var room = new Room();
+            //var room = _context.
             
             var viewModel = new CustomerFormViewModel
             {
                 Customer = customer,
-                Rooms = room,
-                Genders = gender
+                Rooms = rooms,
+                Genders = gender,
+                Room = room
             };
 
             return View(viewModel);

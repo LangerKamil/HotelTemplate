@@ -3,40 +3,81 @@
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    #leftContainer{
+        display:inline-block;
+        width:40%;
+        float:left;
+    }
+    #rightContainer{
+        display:inline-block;
+        float:left;
+        width:40%;
+    }
 
+</style>
 <h2>Booking</h2>
 
 @using (Html.BeginForm("Create", "Home"))
-{
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.Gender)
-        @Html.DropDownListFor(c => c.Customer.Gender, new SelectList(Model.Genders, "Id", "Name"), "", new { @class = "form-control" })
+{<div id="leftContainer">
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.Gender)
+            @Html.DropDownListFor(c => c.Customer.GenderId, new SelectList(Model.Genders, "Id", "Name"), new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.FirstName)
+            @Html.TextBoxFor(c => c.Customer.FirstName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.LastName)
+            @Html.TextBoxFor(c => c.Customer.LastName, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.DateOfBirth)
+            @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0:d MMM yyyy}", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.IDNumber)
+            @Html.TextBoxFor(c => c.Customer.IDNumber, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.PhoneNumber)
+            @Html.TextBoxFor(c => c.Customer.PhoneNumber, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(c => c.Customer.EmailAddress)
+            @Html.TextBoxFor(c => c.Customer.EmailAddress, new { @class = "form-control" })
+        </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/Home/Index" class="btn btn-danger">Cancel</a>
+
+
     </div>
     <div class="form-group">
-        @Html.LabelFor(c=>c.Customer.FirstName)
-        @Html.TextBoxFor(c=>c.Customer.FirstName, new { @class="form-control"})
+        @Html.LabelFor(m => m.Room.RoomType)
+        @Html.DropDownListFor(m => m.Room.RoomTypeId, new SelectList(Model.Rooms, "Id", "Name"), new { @class = "form-control" })
     </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.LastName)
-        @Html.TextBoxFor(c => c.Customer.LastName, new { @class = "form-control" })
+
+    <div id="rightContainer">
+        <div class="form-group input-group-md">
+            @Html.LabelFor(m => m.Room.CheckIn)
+            @Html.TextBoxFor(m => m.Room.CheckIn, "{0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.Room.CheckIn)
+        </div>
+        <div class="form-group input-group-md">
+            @Html.LabelFor(m => m.Room.CheckOut)
+            @Html.TextBoxFor(m => m.Room.CheckOut, "{0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.Room.CheckOut)
+
+        </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.DateOfBirth)
-        @Html.TextBoxFor(c => c.Customer.DateOfBirth,"{0:d MMM yyyy}", new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.IDNumber)
-        @Html.TextBoxFor(c => c.Customer.IDNumber, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.PhoneNumber)
-        @Html.TextBoxFor(c => c.Customer.PhoneNumber, new { @class = "form-control" })
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(c => c.Customer.EmailAddress)
-        @Html.TextBoxFor(c => c.Customer.EmailAddress, new { @class = "form-control" })
-    </div>
-    <button type="submit" class="btn btn-primary">Save</button>
-    <a href="/Home/Index" class="btn btn-danger">Cancel</a>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $('.datepicker').datepicker();
+
+    </script>
 
 }
