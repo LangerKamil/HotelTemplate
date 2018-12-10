@@ -12,8 +12,13 @@ namespace HotelApplication.App_Start
     {
         public MappingProfile()
         {
+            // Domain to DTO
             Mapper.CreateMap<Customer, CustomerDTO>();
+            Mapper.CreateMap<Gender, GenderDTO>();
+
+            // DTO to Domain
             Mapper.CreateMap<CustomerDTO, Customer>();
+            Mapper.CreateMap<GenderDTO, Gender>();
         }
     }
 }

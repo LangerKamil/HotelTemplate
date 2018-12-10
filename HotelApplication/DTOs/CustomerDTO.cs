@@ -22,6 +22,8 @@ namespace HotelApplication.DTOs
 
         public string IDNumber { get; set; }
 
+        public GenderDTO Gender { get; set; }
+
 
     }
 }
