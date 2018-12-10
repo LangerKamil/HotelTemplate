@@ -1,0 +1,50 @@
+﻿@model HotelApplication.ViewModels.CustomerFormViewModel
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_ServiceNavBar")
+
+<h2>@Model.Customer.FirstName</h2>
+
+
+@using (Html.BeginForm("Edit", "Service"))
+{
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.Gender)
+        @Html.DropDownListFor(c => c.Customer.Gender, new SelectList(Model.Genders, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.FirstName)
+        @Html.TextBoxFor(c => c.Customer.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c=>c.Customer.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.LastName)
+        @Html.TextBoxFor(c => c.Customer.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.DateOfBirth)
+        @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0:d MMM yyyy}", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.IDNumber)
+        @Html.TextBoxFor(c => c.Customer.IDNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.PhoneNumber)
+        @Html.TextBoxFor(c => c.Customer.PhoneNumber, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Customer.EmailAddress)
+        @Html.TextBoxFor(c => c.Customer.EmailAddress, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(c => c.Customer.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+
+}
+
+
+
+

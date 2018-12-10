@@ -1,0 +1,64 @@
+﻿@model HotelApplication.ViewModels.CustomerServiceViewModel
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_ServiceNavBar")
+
+<h2>Customers</h2>
+
+<hr />
+<button onclick="location.href='@Url.Action("Booking", "Home")'" class="btn btn-primary">New Customer</button>
+<hr/>
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>NAME</th>
+            <th>ACTIONS</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model.Customer)
+        {
+
+            <tr>
+                <th>
+                
+                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "CustomerDetails", "Service", new { id = customer.Id }, null)
+                </th>
+                <th><button data-customer-id="@customer.Id" class="btn btn-primary  js-edit">Edit</button>
+                <button data-customer-id="@customer.Id" class="btn btn-danger  js-delete">Remove</button></th>
+
+                
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#customers").on("click", ".js-delete", function () {
+                if (confirm("Are you sure you want to delete this customer?")) {
+                    $.ajax({
+                        url: "api"
+                    })
+                }
+            });
+
+            $("#customers").on("click", ".js-edit", function () {
+                if (confirm("Do you want to edit this customer?")) {
+                    $.ajax({
+                        url: "/service/customers/" + $(this).attr("data-customer-id"),
+                        method: "EDIT",
+                        success: function () {
+                            console.log("Success");
+                        }
+                    })
+                }
+            });
+        })
+    </script>
+    }
