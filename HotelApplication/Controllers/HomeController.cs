@@ -43,13 +43,14 @@ namespace HotelApplication.Controllers
             var gender = _context.Genders.ToList();
             var room = new Room();
             //var room = _context.
-            
+
             var viewModel = new CustomerFormViewModel
             {
                 Customer = customer,
                 Rooms = rooms,
                 Genders = gender,
-                Room = room
+                Room = room,
+                RoomTypes = _context.RoomTypes.ToList()
             };
 
             return View(viewModel);

@@ -24,9 +24,10 @@
         @Html.LabelFor(c => c.Customer.LastName)
         @Html.TextBoxFor(c => c.Customer.LastName, new { @class = "form-control" })
     </div>
-    <div class="form-group">
+    <div class="form-group input-group-md">
         @Html.LabelFor(c => c.Customer.DateOfBirth)
-        @Html.TextBoxFor(c => c.Customer.DateOfBirth, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.TextBoxFor(c => c.Customer.DateOfBirth, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
+        @Html.ValidationMessageFor(c => c.Customer.DateOfBirth)
     </div>
     <div class="form-group">
         @Html.LabelFor(c => c.Customer.IDNumber)
@@ -48,6 +49,13 @@
 
 }
 
+@section Scripts{
+    <script type="text/javascript">
 
+        $('.datepicker').datepicker();
+
+    </script>
+
+}
 
 

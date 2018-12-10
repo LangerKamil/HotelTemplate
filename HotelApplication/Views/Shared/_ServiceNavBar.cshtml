@@ -1,13 +1,19 @@
 ﻿<style>
     #svcMenu {
+        line-height:45px;
         text-align: center;
+    }
+    #svcMenu>span{
+        margin:0 20px;
+        padding:20px;
     }
 </style>
 <div id="minNavbar" class="navbar navbar-inverse">
     <div id="svcMenu">
-        @Html.ActionLink("Overview", "Overview")
-        @Html.ActionLink("Reservations", "Reservations")
-        @Html.ActionLink("Customers", "Customers")
-        @Html.ActionLink("Rooms", "Rooms")
+        <span>@Html.ActionLink("Overview", "Overview")</span>
+        <span>@Html.ActionLink("Reservations", "Reservations")</span>
+        <span>@Html.ActionLink("Customers", "Customers")</span>
+        <span>@Html.ActionLink("Rooms", "Rooms")</span>
     </div>
 </div>
+
