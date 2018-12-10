@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using HotelApplication.Models;
+using HotelApplication.DTOs;
+using AutoMapper;
 
 namespace HotelApplication.Controllers.API
 {
@@ -19,42 +21,45 @@ namespace HotelApplication.Controllers.API
 
         // GET /api/Services/Customers
         [Route("api/Services/Customers")]
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDTO> GetCustomers()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer,CustomerDTO>);
         }
 
         // GET /api/Services/Customers/1
         [Route("api/Services/Customers/{id}")]
-        public Customer GetCustomer(int id)
+        public CustomerDTO GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            return customer;
+            return Mapper.Map<Customer,CustomerDTO>(customer);
         }
 
         // POST /api/Services/Customers
         [HttpPost]
         [Route("api/Services/Customers")]
-        public Customer CreateCustomer (Customer customer)
+        public CustomerDTO CreateCustomer (CustomerDTO customerDTO)
         {
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            var customer = Mapper.Map<CustomerDTO, Customer>(customerDTO);
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
-            return customer;
+            customerDTO.Id = customer.Id;
+
+            return customerDTO;
 
         }
 
         // PUT /api/Services/Customers/1
         [HttpPut]
         [Route("api/Services/Customers/{id}")]
-        public void UpdateCustomer (int id, Customer customer)
+        public void UpdateCustomer (int id, CustomerDTO customerDTO)
         {
             var DBcustomer = _context.Customers.SingleOrDefault(c=>c.Id==id);
 
@@ -64,13 +69,7 @@ namespace HotelApplication.Controllers.API
             if (DBcustomer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            DBcustomer.FirstName = customer.FirstName;
-            DBcustomer.LastName = customer.LastName;
-            DBcustomer.DateOfBirth = customer.DateOfBirth;
-            DBcustomer.Gender= customer.Gender;
-            DBcustomer.EmailAddress= customer.EmailAddress;
-            DBcustomer.IDNumber= customer.IDNumber;
-            DBcustomer.PhoneNumber= customer.PhoneNumber;
+            Mapper.Map(customerDTO, DBcustomer);
 
             _context.SaveChanges();
         }
