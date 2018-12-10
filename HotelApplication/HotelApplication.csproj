@@ -214,9 +214,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\API\ServicesController.cs" />
+    <Compile Include="Controllers\API\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
     <Compile Include="DTOs\GenderDTO.cs" />
@@ -259,6 +261,14 @@
     <Compile Include="Migrations\201812101212583_AddingGenderIdtoCustomer.cs" />
     <Compile Include="Migrations\201812101212583_AddingGenderIdtoCustomer.Designer.cs">
       <DependentUpon>201812101212583_AddingGenderIdtoCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101809566_ChangeRoomTypeIdTypeToByte.cs" />
+    <Compile Include="Migrations\201812101809566_ChangeRoomTypeIdTypeToByte.Designer.cs">
+      <DependentUpon>201812101809566_ChangeRoomTypeIdTypeToByte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812101815549_ChangingRoomStatusNavigationProperty.cs" />
+    <Compile Include="Migrations\201812101815549_ChangingRoomStatusNavigationProperty.Designer.cs">
+      <DependentUpon>201812101815549_ChangingRoomStatusNavigationProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -515,12 +525,13 @@
     <Content Include="Views\Service\Rooms.cshtml" />
     <Content Include="Views\Service\Reservations.cshtml" />
     <Content Include="Views\Service\Customers.cshtml" />
-    <Content Include="Views\Service\CustomerDetails.cshtml" />
+    <Content Include="Views\Customer\CustomerDetails.cshtml" />
     <Content Include="Views\Shared\_ServiceNavBar.cshtml" />
-    <Content Include="Views\Service\NewForm.cshtml" />
+    <Content Include="Views\Customer\NewForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Rooms\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -557,6 +568,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812101212583_AddingGenderIdtoCustomer.resx">
       <DependentUpon>201812101212583_AddingGenderIdtoCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101809566_ChangeRoomTypeIdTypeToByte.resx">
+      <DependentUpon>201812101809566_ChangeRoomTypeIdTypeToByte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812101815549_ChangingRoomStatusNavigationProperty.resx">
+      <DependentUpon>201812101815549_ChangingRoomStatusNavigationProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,8 +10,9 @@ namespace HotelApplication.Models
         public byte Id { get; set; }
         public DateTime CheckIn { get; set; }
         public DateTime CheckOut { get; set; }
-        public RoomType RoomTypeId { get; set; }
+        public byte RoomTypeId { get; set; }
         public RoomType RoomType { get; set; }
+        public byte RoomStatusId { get; set; }
         public RoomStatus RoomStatus { get; set; }
     }
 }

@@ -9,7 +9,7 @@
 <h2>Customers</h2>
 
 <hr />
-<button onclick="location.href='@Url.Action("NewForm", "Service")'" class="btn btn-primary">New Customer</button>
+<button onclick="location.href='@Url.Action("NewForm", "Customer")'" class="btn btn-primary">New Customer</button>
 <hr />
 
 <table id="customers" class="table table-bordered table-hover">
@@ -17,7 +17,7 @@
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>ACTIONS</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -26,7 +26,7 @@
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable({
+           var table =  $("#customers").DataTable({
                 ajax: {
                     url: "/api/Services/Customers",
                     dataSrc: "",
@@ -44,7 +44,7 @@
                 {
                     data: "Id",
                     render: function (data, type, customer) {
-                        var deleteBtn = "<a href='/Service/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
+                        var deleteBtn = "<a href='/Customer/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
                         var editBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
                         return deleteBtn + editBtn
 
@@ -64,7 +64,7 @@
                             url: "/api/Services/Customers/" + button.attr("data-customer-id"),
                             method: "DELETE",
                             success: function () {
-                                button.parents("tr").remove();
+                                table.row(button.parents("tr")).remove().draw();
                             }
                         })
                     }

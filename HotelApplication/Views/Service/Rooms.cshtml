@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<HotelApplication.Models.Room>
 @{
     ViewBag.Title = "Rooms";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,13 +13,13 @@
 <hr />
 
 <!---  SMALL ROOMS-->
-<h3>Small Rooms</h3> 
+<h3>Small Rooms</h3>
 <table id="smRooms" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Room Number</th>
             <th>Status</th>
-            <th>ACTIONS</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -32,7 +32,7 @@
         <tr>
             <th>Room Number</th>
             <th>Status</th>
-            <th>ACTIONS</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -45,7 +45,7 @@
         <tr>
             <th>Room Number</th>
             <th>Status</th>
-            <th>ACTIONS</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -53,6 +53,36 @@
 
 @section scripts{
     <script>
-       
+
+        $(document).ready(function () {
+            $("#smRooms").DataTable({
+                ajax: {
+                    url: "/api/Services/Rooms",
+                    dataSrc: "",
+                },
+
+                columns: [
+                    {
+                        data: "Id"
+                    },
+
+                    {
+                        data: "Id"
+                    },
+
+                {
+                   /* data: "Id",
+                    render: function (data, type, customer) {
+                        var deleteBtn = "<a href='/Service/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
+                        var editBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
+                        return deleteBtn + editBtn
+                    */
+                    data:"Id"
+                    }
+                
+
+                ]
+            });
+        })
     </script>
 }

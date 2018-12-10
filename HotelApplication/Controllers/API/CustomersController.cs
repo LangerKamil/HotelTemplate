@@ -10,13 +10,18 @@ using AutoMapper;
 
 namespace HotelApplication.Controllers.API
 {
-    public class ServicesController : ApiController
+    public class CustomersController : ApiController
     {
         private ApplicationDbContext _context;
 
-        public ServicesController()
+        public CustomersController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
         }
 
         // GET /api/Services/Customers
