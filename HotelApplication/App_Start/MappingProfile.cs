@@ -15,11 +15,21 @@ namespace HotelApplication.App_Start
             // Domain to DTO
             Mapper.CreateMap<Customer, CustomerDTO>();
             Mapper.CreateMap<Gender, GenderDTO>();
-            Mapper.CreateMap<Customer, Customer>();
+            Mapper.CreateMap<Room, RoomDTO>();
+            Mapper.CreateMap<RoomType, RoomTypeDTO>();
+            Mapper.CreateMap<RoomStatus, RoomStatusDTO>();
 
             // DTO to Domain
             Mapper.CreateMap<CustomerDTO, Customer>();
             Mapper.CreateMap<GenderDTO, Gender>();
+            Mapper.CreateMap<RoomDTO, Room>();
+            Mapper.CreateMap<RoomTypeDTO, RoomType>();
+            Mapper.CreateMap<RoomStatusDTO, RoomStatus>();
+
+            // Domain
+            Mapper.CreateMap<Room, Room>();
+            Mapper.CreateMap<Customer, Customer>();
+
         }
     }
 }

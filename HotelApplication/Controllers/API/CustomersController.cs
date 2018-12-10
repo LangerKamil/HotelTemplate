@@ -66,15 +66,15 @@ namespace HotelApplication.Controllers.API
         [Route("api/Services/Customers/{id}")]
         public void UpdateCustomer (int id, CustomerDTO customerDTO)
         {
-            var DBcustomer = _context.Customers.SingleOrDefault(c=>c.Id==id);
+            var customerInDb = _context.Customers.SingleOrDefault(c=>c.Id==id);
 
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            if (DBcustomer == null)
+            if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            Mapper.Map(customerDTO, DBcustomer);
+            Mapper.Map(customerDTO, customerInDb);
 
             _context.SaveChanges();
         }
