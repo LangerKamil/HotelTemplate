@@ -9,56 +9,82 @@
 <h2>Customers</h2>
 
 <hr />
-<button onclick="location.href='@Url.Action("Booking", "Home")'" class="btn btn-primary">New Customer</button>
-<hr/>
+<button onclick="location.href='@Url.Action("NewForm", "Service")'" class="btn btn-primary">New Customer</button>
+<hr />
 
 <table id="customers" class="table table-bordered table-hover">
     <thead>
         <tr>
-            <th>NAME</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>ACTIONS</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var customer in Model.Customer)
-        {
-
-            <tr>
-                <th>
-                
-                    @Html.ActionLink(customer.FirstName + " " + customer.LastName, "CustomerDetails", "Service", new { id = customer.Id }, null)
-                </th>
-                <th><button data-customer-id="@customer.Id" class="btn btn-primary  js-edit">Edit</button>
-                <button data-customer-id="@customer.Id" class="btn btn-danger  js-delete">Remove</button></th>
-
-                
-            </tr>
-        }
-    </tbody>
+    <tbody></tbody>
 </table>
 
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#customers").on("click", ".js-delete", function () {
-                if (confirm("Are you sure you want to delete this customer?")) {
-                    $.ajax({
-                        url: "api"
-                    })
+            $("#customers").DataTable({
+                ajax: {
+                    url: "/api/Services/Customers",
+                    dataSrc: "",
+                },
+
+                columns: [
+                    {
+                        data: "FirstName"
+                    },
+
+                    {
+                        data: "LastName"
+                    },
+
+                {
+                    data: "Id",
+                    render: function (data, type, customer) {
+                        var deleteBtn = "<a href='/Service/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
+                        var editBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
+                        return deleteBtn + editBtn
+
+                    }
                 }
+
+                ]
+            });
+
+
+            $("#customers").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/Services/Customers/" + button.attr("data-customer-id"),
+                            method: "DELETE",
+                            success: function () {
+                                button.parents("tr").remove();
+                            }
+                        })
+                    }
+                });
             });
 
             $("#customers").on("click", ".js-edit", function () {
-                if (confirm("Do you want to edit this customer?")) {
-                    $.ajax({
-                        url: "/service/customers/" + $(this).attr("data-customer-id"),
-                        method: "EDIT",
-                        success: function () {
-                            console.log("Success");
-                        }
-                    })
-                }
+                var button = $(this);
+                bootbox.confirm("Do you want to edit this user?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/Services/Customers/" + button.attr("data-customer-id"),
+                            method: "PUT",
+                            success: function (result) {
+                                console.log("Success!");
+                            }
+                        })
+                    }
+                })
             });
         })
     </script>
-    }
+}

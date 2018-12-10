@@ -31,5 +31,7 @@ namespace HotelApplication.Models
 
         public Gender Gender { get; set; }
 
+        public byte GenderId { get; set; }
+
     }
 }

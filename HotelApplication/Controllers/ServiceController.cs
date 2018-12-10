@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HotelApplication.Models;
 using HotelApplication.ViewModels;
+using AutoMapper;
 
 namespace HotelApplication.Controllers
 {
@@ -20,6 +21,32 @@ namespace HotelApplication.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            return RedirectToAction("Customers", "Service");
+        }
+
+        [HttpPost]
+        public ActionResult NewForm()
+        {
+            var customer = new Customer();
+            var room = _context.Rooms.ToList();
+            var gender = _context.Genders.ToList();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                Rooms = room,
+                Genders = gender
+            };
+
+            return View(viewModel);
         }
 
         // GET: Service
@@ -53,6 +80,7 @@ namespace HotelApplication.Controllers
             return View(viewModel);
         }
 
+        [HttpPut]
         public ActionResult CustomerDetails(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -89,14 +117,9 @@ namespace HotelApplication.Controllers
             //return View("CustomerDetails",viewModel);
             //}
 
-            var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
-            customerInDb.FirstName = customer.FirstName;
-            customerInDb.LastName = customer.LastName; 
-            customerInDb.IDNumber= customer.IDNumber; 
-            customerInDb.PhoneNumber= customer.PhoneNumber; 
-            customerInDb.EmailAddress= customer.EmailAddress;
-            customerInDb.DateOfBirth= customer.DateOfBirth;
-            customerInDb.Gender= customer.Gender;
+            var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
+
+            Mapper.Map(customerInDb, customer);
 
             _context.SaveChanges();
 
