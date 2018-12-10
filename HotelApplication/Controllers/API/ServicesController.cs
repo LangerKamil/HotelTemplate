@@ -17,13 +17,15 @@ namespace HotelApplication.Controllers.API
             _context = new ApplicationDbContext();
         }
 
-        // GET /api/Service/Customers
+        // GET /api/Services/Customers
+        [Route("api/Services/Customers")]
         public IEnumerable<Customer> GetCustomers()
         {
             return _context.Customers.ToList();
         }
 
-        // GET /api/Service/Customers/1
+        // GET /api/Services/Customers/1
+        [Route("api/Services/Customers/{id}")]
         public Customer GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -34,8 +36,9 @@ namespace HotelApplication.Controllers.API
             return customer;
         }
 
-        // POST /api/Service/Customer
+        // POST /api/Services/Customers
         [HttpPost]
+        [Route("api/Services/Customers")]
         public Customer CreateCustomer (Customer customer)
         {
             if (!ModelState.IsValid)
@@ -48,8 +51,9 @@ namespace HotelApplication.Controllers.API
 
         }
 
-        // PUT /api/Service/Customers/1
+        // PUT /api/Services/Customers/1
         [HttpPut]
+        [Route("api/Services/Customers/{id}")]
         public void UpdateCustomer (int id, Customer customer)
         {
             var DBcustomer = _context.Customers.SingleOrDefault(c=>c.Id==id);
@@ -71,8 +75,9 @@ namespace HotelApplication.Controllers.API
             _context.SaveChanges();
         }
 
-        // DELETE /api/Service/Customers/1
+        // DELETE /api/Services/Customers/1
         [HttpDelete]
+        [Route("api/Services/Customers/{id}")]
         public void DeleteCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
