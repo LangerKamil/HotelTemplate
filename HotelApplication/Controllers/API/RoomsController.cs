@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using HotelApplication.Models;
 using HotelApplication.DTOs;
+using System.Data.Entity;
 using AutoMapper;
 
 namespace HotelApplication.Controllers.API
@@ -28,7 +29,7 @@ namespace HotelApplication.Controllers.API
         [Route("api/Services/Rooms")]
         public IEnumerable<RoomDTO> GetRooms()
         {
-            return _context.Rooms.ToList().Select(Mapper.Map<Room,RoomDTO>);
+            return _context.Rooms.Include(c=>c.RoomStatus).ToList().Select(Mapper.Map<Room,RoomDTO>);
         }
 
 

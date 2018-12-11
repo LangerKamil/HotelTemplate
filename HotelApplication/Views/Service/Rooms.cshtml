@@ -53,36 +53,70 @@
 
 @section scripts{
     <script>
+        var tableRender = {
+            Sm: RenderTable("#smRooms"),
+            Md: RenderTable("#mdRooms"),
+            Lg: RenderTable("#lgRooms")
+        }
+        $(document).ready(tableRender.Sm,tableRender.Md,tableRender.Lg);
+            //$("#smRooms").DataTable({
+            //    ajax: {
+            //        url: "/api/Services/Rooms",
+            //        dataSrc: function (json) {
+            //            return json.filter(c=> c.RoomTypeId === 1);
+            //            //return json.slice(0,20);
+            //        },
+            //    },
 
-        $(document).ready(function () {
-            $("#smRooms").DataTable({
+            //    columns: [
+            //        {
+            //            data: "Id"
+            //        },
+            //        {
+            //            data: "RoomStatus",
+            //            render: function (data) {
+            //                return " " + data.Name;
+            //            }
+            //        },
+            //    {
+            //        data: "Id",
+            //        render: function () {
+            //            return "<button class='btn btn-primary'>View Details</button>"
+            //        }
+            //    }
+            //    ]
+            //});
+        
+
+        function RenderTable(table) {
+            var statusType = table==="#smRooms"?1:(table==="#mdRooms"?2:3)
+            $(table).DataTable({
                 ajax: {
                     url: "/api/Services/Rooms",
-                    dataSrc: "",
+                    dataSrc: function (json) {
+                        return json.filter(c=> c.RoomTypeId === statusType);
+                        //return json.slice(0,20);
+                    },
                 },
 
                 columns: [
                     {
                         data: "Id"
                     },
-
                     {
-                        data: "Id"
+                        data: "RoomStatus",
+                        render: function (data) {
+                            return " " + data.Name;
+                        }
                     },
-
                 {
-                   /* data: "Id",
-                    render: function (data, type, customer) {
-                        var deleteBtn = "<a href='/Service/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
-                        var editBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
-                        return deleteBtn + editBtn
-                    */
-                    data:"Id"
+                    data: "Id",
+                    render: function () {
+                        return "<button class='btn btn-primary'>View Details</button>"
                     }
-                
-
+                }
                 ]
             });
-        })
+        }
     </script>
 }
