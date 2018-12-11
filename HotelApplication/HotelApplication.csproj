@@ -274,6 +274,10 @@
     <Compile Include="Migrations\201812101815549_ChangingRoomStatusNavigationProperty.Designer.cs">
       <DependentUpon>201812101815549_ChangingRoomStatusNavigationProperty.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812110105282_PopulateRooms.cs" />
+    <Compile Include="Migrations\201812110105282_PopulateRooms.Designer.cs">
+      <DependentUpon>201812110105282_PopulateRooms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -579,6 +583,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812101815549_ChangingRoomStatusNavigationProperty.resx">
       <DependentUpon>201812101815549_ChangingRoomStatusNavigationProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110105282_PopulateRooms.resx">
+      <DependentUpon>201812110105282_PopulateRooms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
