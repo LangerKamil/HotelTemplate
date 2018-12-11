@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using HotelApplication.Models;
 using HotelApplication.ViewModels;
 using AutoMapper;
+using FluentValidation.Results;
 
 namespace HotelApplication.Controllers
 {
@@ -26,6 +27,16 @@ namespace HotelApplication.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    Genders = _context.Genders.ToList()
+                };
+                return View("NewForm", viewModel);
+            }
+
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -75,6 +86,20 @@ namespace HotelApplication.Controllers
         [HttpPost]
         public ActionResult Edit(Customer customer)
         {
+            //CustomerValidator validator = new CustomerValidator();
+
+            //ValidationResult results = validator.Validate(customer);
+
+            if (!ModelState.IsValid)
+            {
+
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    Genders = _context.Genders.ToList()
+                };
+                return View("CustomerDetails", viewModel);
+            }
 
             var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
 

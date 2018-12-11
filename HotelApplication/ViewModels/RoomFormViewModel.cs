@@ -11,5 +11,6 @@ namespace HotelApplication.ViewModels
         public Room Room { get; set; }
         public List<RoomType> RoomTypes { get; set; }
         public List<RoomStatus> RoomStatuses { get; set; }
+        public Customer Customer { get; set; }
     }
 }

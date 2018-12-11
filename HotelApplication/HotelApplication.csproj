@@ -48,6 +48,30 @@
       <HintPath>..\packages\AutoMapper.4.1.0\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.1.0\lib\net45\FluentValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.Mvc5.8.1.0\lib\net45\FluentValidation.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.ValidatorAttribute, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.ValidatorAttribute.8.1.0\lib\net45\FluentValidation.ValidatorAttribute.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FluentValidation.WebApi, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.WebApi.8.1.0\lib\net45\FluentValidation.WebApi.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -82,10 +106,18 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Primitives, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.DynamicData" />
@@ -94,8 +126,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    <Reference Include="System.Web.Http, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.4\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -159,12 +191,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -219,6 +245,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="DTOs\CustomerDTO.cs" />
@@ -278,12 +305,34 @@
     <Compile Include="Migrations\201812110105282_PopulateRooms.Designer.cs">
       <DependentUpon>201812110105282_PopulateRooms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812110500118_MakingIDNumberUniqueAndRequired.cs" />
+    <Compile Include="Migrations\201812110500118_MakingIDNumberUniqueAndRequired.Designer.cs">
+      <DependentUpon>201812110500118_MakingIDNumberUniqueAndRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812110757572_AddingAnnotationsForDataValidation.cs" />
+    <Compile Include="Migrations\201812110757572_AddingAnnotationsForDataValidation.Designer.cs">
+      <DependentUpon>201812110757572_AddingAnnotationsForDataValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812110948296_ChangingFirstAndLastNameToOptional.cs" />
+    <Compile Include="Migrations\201812110948296_ChangingFirstAndLastNameToOptional.Designer.cs">
+      <DependentUpon>201812110948296_ChangingFirstAndLastNameToOptional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111213387_CreateReservationModel.cs" />
+    <Compile Include="Migrations\201812111213387_CreateReservationModel.Designer.cs">
+      <DependentUpon>201812111213387_CreateReservationModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111328186_FeedReservationStatus.cs" />
+    <Compile Include="Migrations\201812111328186_FeedReservationStatus.Designer.cs">
+      <DependentUpon>201812111328186_FeedReservationStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Gender.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Reservation.cs" />
+    <Compile Include="Models\ReservationStatus.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\RoomStatus.cs" />
     <Compile Include="Models\RoomType.cs" />
@@ -537,10 +586,11 @@
     <Content Include="Views\Customer\CustomerDetails.cshtml" />
     <Content Include="Views\Shared\_ServiceNavBar.cshtml" />
     <Content Include="Views\Customer\NewForm.cshtml" />
+    <Content Include="Views\Room\RoomDetails.cshtml" />
+    <Content Include="Views\Reservation\NewForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Rooms\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -586,6 +636,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812110105282_PopulateRooms.resx">
       <DependentUpon>201812110105282_PopulateRooms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110500118_MakingIDNumberUniqueAndRequired.resx">
+      <DependentUpon>201812110500118_MakingIDNumberUniqueAndRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110757572_AddingAnnotationsForDataValidation.resx">
+      <DependentUpon>201812110757572_AddingAnnotationsForDataValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812110948296_ChangingFirstAndLastNameToOptional.resx">
+      <DependentUpon>201812110948296_ChangingFirstAndLastNameToOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111213387_CreateReservationModel.resx">
+      <DependentUpon>201812111213387_CreateReservationModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111328186_FeedReservationStatus.resx">
+      <DependentUpon>201812111328186_FeedReservationStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

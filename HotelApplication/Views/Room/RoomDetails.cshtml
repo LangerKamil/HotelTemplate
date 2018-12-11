@@ -1,0 +1,53 @@
+﻿@model HotelApplication.ViewModels.RoomFormViewModel
+@{
+    ViewBag.Title = "RoomDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_ServiceNavBar")
+
+@using (Html.BeginForm("Edit", "Room"))
+{
+
+    <h2>Room Number: @Model.Room.Id</h2>
+    <div class="form-group">
+        @Html.LabelFor(c => c.Room.RoomStatus)
+        @Html.DropDownListFor(c => c.Room.RoomStatusId, new SelectList(Model.RoomStatuses, "Id", "Name"), new { @class = "form-control" })
+    </div>
+    <div id="leftContainer">
+
+    </div>
+
+
+    <div id="rightContainer">
+        <h3>Reservation</h3>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Room.RoomType)
+            @Html.DropDownListFor(m => m.Room.RoomTypeId, new SelectList(Model.RoomTypes, "Id", "Name"), new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Room.RoomTypeId)
+        </div>
+
+        <div class="form-group input-group-md">
+            @Html.LabelFor(m => m.Room.CheckIn)
+            @Html.TextBoxFor(m => m.Room.CheckIn, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.Room.CheckIn)
+        </div>
+        <div class="form-group input-group-md">
+            @Html.LabelFor(m => m.Room.CheckOut)
+            @Html.TextBoxFor(m => m.Room.CheckOut, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.Room.CheckOut)
+
+        </div>
+    </div>
+    @Html.HiddenFor(c => c.Room.Id)
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/Service/Rooms" class="btn btn-danger">Cancel</a>
+}
+
+@section Scripts{
+    <script type="text/javascript">
+
+        $('.datepicker').datepicker();
+
+    </script>
+}

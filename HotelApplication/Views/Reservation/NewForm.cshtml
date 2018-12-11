@@ -1,8 +1,10 @@
 ﻿@model HotelApplication.ViewModels.CustomerFormViewModel
 @{
-    ViewBag.Title = "Booking";
+    ViewBag.Title = "NewForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<h2>NewForm</h2>
 <style>
     #leftContainer {
         display: inline-block;
@@ -18,8 +20,8 @@
 </style>
 
 
-@using (Html.BeginForm("Create", "Home"))
-    {
+@using (Html.BeginForm("Create", "Reservation"))
+{
 
 
     <div id="leftContainer">
@@ -31,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.FirstName)
             @Html.TextBoxFor(c => c.Customer.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(c=>c.Customer.FirstName)
+            @Html.ValidationMessageFor(c => c.Customer.FirstName)
         </div>
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.LastName)
@@ -47,22 +49,18 @@
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.IDNumber)
             @Html.TextBoxFor(c => c.Customer.IDNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(c=>c.Customer.IDNumber)
+            @Html.ValidationMessageFor(c => c.Customer.IDNumber)
         </div>
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.PhoneNumber)
             @Html.TextBoxFor(c => c.Customer.PhoneNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(c=>c.Customer.PhoneNumber)
+            @Html.ValidationMessageFor(c => c.Customer.PhoneNumber)
         </div>
         <div class="form-group">
             @Html.LabelFor(c => c.Customer.EmailAddress)
             @Html.TextBoxFor(c => c.Customer.EmailAddress, new { @class = "form-control" })
-            @Html.ValidationMessageFor(c=>c.Customer.EmailAddress)
+            @Html.ValidationMessageFor(c => c.Customer.EmailAddress)
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-        <a href="/Home/Index" class="btn btn-danger">Cancel</a>
-
-
     </div>
 
 
@@ -71,7 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Room.RoomType)
             @Html.DropDownListFor(m => m.Room.RoomTypeId, new SelectList(Model.RoomTypes, "Id", "Name"), new { @class = "form-control" })
-            @Html.ValidationMessageFor(m=>m.Room.RoomTypeId)
+            @Html.ValidationMessageFor(m => m.Room.RoomTypeId)
         </div>
         <div class="form-group input-group-md">
             @Html.LabelFor(m => m.Room.CheckIn)
@@ -83,15 +81,20 @@
             @Html.TextBoxFor(m => m.Room.CheckOut, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(m => m.Room.CheckOut)
         </div>
-
     </div>
-    }
 
-    @section Scripts{
-        <script type="text/javascript">
 
-            $('.datepicker').datepicker();
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="/Home/Index" class="btn btn-danger">Cancel</a>
+}
 
-        </script>
+@section Scripts{
+    <script type="text/javascript">
 
-    }
+        $('.datepicker').datepicker();
+
+    </script>
+
+}
+
+

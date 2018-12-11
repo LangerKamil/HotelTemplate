@@ -8,3 +8,19 @@
 
 <h2>Reservations</h2>
 
+<hr />
+<button onclick="location.href='@Url.Action("NewForm", "Reservation")'" class="btn btn-primary">Create Reservation</button>
+<hr />
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customer Details</th>
+            <th>Room Details</th>
+            <th>Status</th>
+            <th>Pricing</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>

@@ -26,6 +26,8 @@ namespace HotelApplication.Models
         public DbSet<Gender> Genders{ get; set; }
         public DbSet<RoomType> RoomTypes { get; set; }
         public DbSet<RoomStatus> RoomStatus { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<ReservationStatus> ReservationStatuses  { get; set; }
 
         //Fluent API
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

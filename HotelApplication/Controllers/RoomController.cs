@@ -44,7 +44,7 @@ namespace HotelApplication.Controllers
             {
                 Room = room,
                 RoomTypes = _context.RoomTypes.ToList(),
-                RoomStatuses = _context.RoomStatus.ToList()
+                RoomStatuses = _context.RoomStatus.ToList(),
             };
 
             return View(viewModel);
@@ -54,7 +54,7 @@ namespace HotelApplication.Controllers
         [HttpPost]
         public ActionResult Edit(Room room)
         {
-
+            
             var roomInDb = _context.Rooms.SingleOrDefault(c => c.Id == room.Id);
 
             Mapper.Map(room, roomInDb);

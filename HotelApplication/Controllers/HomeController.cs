@@ -25,6 +25,18 @@ namespace HotelApplication.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    Rooms = _context.Rooms.ToList(),
+                    Genders = _context.Genders.ToList(),
+                    RoomTypes = _context.RoomTypes.ToList()
+                };
+
+                return View("Booking", viewModel);
+            }
             _context.Customers.Add(customer);
             _context.SaveChanges();
 
@@ -38,18 +50,12 @@ namespace HotelApplication.Controllers
 
         public ActionResult Booking()
         {
-            var customer = new Customer();
-            var rooms = _context.Rooms.ToList();
-            var gender = _context.Genders.ToList();
-            var room = new Room();
-            //var room = _context.
-
             var viewModel = new CustomerFormViewModel
             {
-                Customer = customer,
-                Rooms = rooms,
-                Genders = gender,
-                Room = room,
+                Customer = new Customer(),
+                Rooms = _context.Rooms.ToList(),
+                Genders = _context.Genders.ToList(),
+                Room = new Room(),
                 RoomTypes = _context.RoomTypes.ToList()
             };
 
