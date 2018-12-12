@@ -27,9 +27,9 @@
 
 @section Scripts{
     <script>
-
+        var tab;
         $(document).ready(function () {
-            var table = $("#reservations").DataTable({
+            var table = tab = $("#reservations").DataTable({
                 ajax: {
                     url: "/api/Services/Reservations",
                     dataSrc: "",
@@ -80,7 +80,7 @@
                         url: "/api/Services/Reservations/" + button.attr("data-reservation-id"),
                         method: "DELETE",
                         success: function () {
-                            table.row(button.parents("tr")).remove().draw();
+                            tab.row(button.parents("tr")).remove().draw();
                         }
                     })
                 }
@@ -92,13 +92,29 @@
 
             bootbox.confirm("Do you want to cancel this reservation?", function (result) {
                 if (result) {
+                    
                     $.ajax({
-                        url: "/api/Services/Reservations/" + button.attr("data-reservation-id"),
+                        url: "/api/Services/Reservations/Cancel/" + button.attr("data-reservation-id"),
                         method: "PUT",
-                        data: "RStatusId",
-                        success: function (data) {
-                            return data = 2
-                            table.draw();
+                        success: function () {
+                            tab.ajax.reload();
+                        }
+                    })
+                }
+            });
+        });
+
+        $("#reservations").on("click", ".js-confirm", function () {
+            var button = $(this);
+
+            bootbox.confirm("Do you want to confirm this reservation?", function (result) {
+                if (result) {
+
+                    $.ajax({
+                        url: "/api/Services/Reservations/Confirm/" + button.attr("data-reservation-id"),
+                        method: "PUT",
+                        success: function () {
+                            tab.ajax.reload();
                         }
                     })
                 }
