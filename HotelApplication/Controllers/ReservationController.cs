@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using HotelApplication.Models;
 using HotelApplication.ViewModels;
-
+using System.Data.Entity;
 namespace HotelApplication.Controllers
 {
     public class ReservationController : Controller
@@ -24,21 +24,38 @@ namespace HotelApplication.Controllers
 
         public ActionResult NewForm()
         {
-            var viewModel = new CustomerFormViewModel
+            var reservation = new Reservation
             {
                 Customer = new Customer(),
-                Rooms = _context.Rooms.ToList(),
+                Room = new Room(),
                 Genders = _context.Genders.ToList(),
                 RoomTypes = _context.RoomTypes.ToList(),
-                Room = new Room()
             };
 
-            return View(viewModel);
+            return View(reservation);
         }
 
-        public ActionResult Create(Customer customer)
+        public ActionResult Create(Customer customer,Room room)
         {
+            var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId&&r.RoomStatusId==1);
+
+            roomInDb.CheckIn = room.CheckIn;
+            roomInDb.CheckOut = room.CheckOut;
+            roomInDb.RoomStatusId = 2;
+
             _context.Customers.Add(customer);
+            _context.SaveChanges();
+
+            var reservation = new Reservation
+            {
+                Customer = _context.Customers.FirstOrDefault(c => c.IDNumber == customer.IDNumber),
+                Room = roomInDb,
+
+            };
+
+            _context.Reservations.Add(reservation);
+
+            _context.SaveChanges();
 
             return RedirectToAction("Reservations", "Service");
         }

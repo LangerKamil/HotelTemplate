@@ -254,6 +254,7 @@
     <Compile Include="DTOs\RoomStatusDTO.cs" />
     <Compile Include="DTOs\RoomTypeDTO.cs" />
     <Compile Include="EntityConfigurations\CustomerConfiguration.cs" />
+    <Compile Include="EntityConfigurations\ReservationConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -324,6 +325,34 @@
     <Compile Include="Migrations\201812111328186_FeedReservationStatus.cs" />
     <Compile Include="Migrations\201812111328186_FeedReservationStatus.Designer.cs">
       <DependentUpon>201812111328186_FeedReservationStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111340552_ChangingReservationIdAndCustomerIdTypeToInt.cs" />
+    <Compile Include="Migrations\201812111340552_ChangingReservationIdAndCustomerIdTypeToInt.Designer.cs">
+      <DependentUpon>201812111340552_ChangingReservationIdAndCustomerIdTypeToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111407405_AddingRoomTypesAndGenresToReservation.cs" />
+    <Compile Include="Migrations\201812111407405_AddingRoomTypesAndGenresToReservation.Designer.cs">
+      <DependentUpon>201812111407405_AddingRoomTypesAndGenresToReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111620474_RemoveCustomerIdandRoomIdFromReservation.cs" />
+    <Compile Include="Migrations\201812111620474_RemoveCustomerIdandRoomIdFromReservation.Designer.cs">
+      <DependentUpon>201812111620474_RemoveCustomerIdandRoomIdFromReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812120218518_ChangingIdInReservation.cs" />
+    <Compile Include="Migrations\201812120218518_ChangingIdInReservation.Designer.cs">
+      <DependentUpon>201812120218518_ChangingIdInReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812120221459_AddingIdIntToReservation.cs" />
+    <Compile Include="Migrations\201812120221459_AddingIdIntToReservation.Designer.cs">
+      <DependentUpon>201812120221459_AddingIdIntToReservation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812120258347_DropReservationTable.cs" />
+    <Compile Include="Migrations\201812120258347_DropReservationTable.Designer.cs">
+      <DependentUpon>201812120258347_DropReservationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812120301595_RecreateReservationTable.cs" />
+    <Compile Include="Migrations\201812120301595_RecreateReservationTable.Designer.cs">
+      <DependentUpon>201812120301595_RecreateReservationTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -651,6 +680,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111328186_FeedReservationStatus.resx">
       <DependentUpon>201812111328186_FeedReservationStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111340552_ChangingReservationIdAndCustomerIdTypeToInt.resx">
+      <DependentUpon>201812111340552_ChangingReservationIdAndCustomerIdTypeToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111407405_AddingRoomTypesAndGenresToReservation.resx">
+      <DependentUpon>201812111407405_AddingRoomTypesAndGenresToReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111620474_RemoveCustomerIdandRoomIdFromReservation.resx">
+      <DependentUpon>201812111620474_RemoveCustomerIdandRoomIdFromReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812120218518_ChangingIdInReservation.resx">
+      <DependentUpon>201812120218518_ChangingIdInReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812120221459_AddingIdIntToReservation.resx">
+      <DependentUpon>201812120221459_AddingIdIntToReservation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812120258347_DropReservationTable.resx">
+      <DependentUpon>201812120258347_DropReservationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812120301595_RecreateReservationTable.resx">
+      <DependentUpon>201812120301595_RecreateReservationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

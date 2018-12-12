@@ -1,4 +1,4 @@
-﻿@model HotelApplication.ViewModels.CustomerFormViewModel
+﻿@model HotelApplication.Models.Reservation
 @{
     ViewBag.Title = "NewForm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -83,7 +83,7 @@
         </div>
     </div>
 
-
+    @Html.HiddenFor(c=>c.Customer.Id)
     <button type="submit" class="btn btn-primary">Save</button>
     <a href="/Home/Index" class="btn btn-danger">Cancel</a>
 }
