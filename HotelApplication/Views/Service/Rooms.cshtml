@@ -60,12 +60,12 @@
         $(document).ready(tableRender.Sm,tableRender.Md,tableRender.Lg);
 
         function RenderTable(table) {
-            var statusType = table==="#smRooms"?1:(table==="#mdRooms"?2:3)
+            var roomSize = table==="#smRooms"?1:(table==="#mdRooms"?2:3)
             $(table).DataTable({
                 ajax: {
                     url: "/api/Services/Rooms",
                     dataSrc: function (json) {
-                        return json.filter(c=> c.RoomTypeId === statusType);
+                        return json.filter(c=> c.RoomTypeId === roomSize);
                         //return json.slice(0,20);
                     },
                 },

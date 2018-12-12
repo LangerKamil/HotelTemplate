@@ -35,6 +35,11 @@ namespace HotelApplication.Controllers
             return View(reservation);
         }
 
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
         public ActionResult Create(Customer customer,Room room)
         {
             var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId&&r.RoomStatusId==1);
@@ -50,7 +55,7 @@ namespace HotelApplication.Controllers
             {
                 Customer = _context.Customers.FirstOrDefault(c => c.IDNumber == customer.IDNumber),
                 Room = roomInDb,
-
+                RStatusId = 3
             };
 
             _context.Reservations.Add(reservation);
@@ -59,5 +64,6 @@ namespace HotelApplication.Controllers
 
             return RedirectToAction("Reservations", "Service");
         }
+
     }
 }

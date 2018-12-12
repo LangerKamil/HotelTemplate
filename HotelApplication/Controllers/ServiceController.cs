@@ -39,7 +39,9 @@ namespace HotelApplication.Controllers
 
         public ActionResult Reservations()
         {
-            return View();
+            var reservations = _context.Reservations.ToList();
+
+            return View(reservations);
         }
 
         public ActionResult Customers()

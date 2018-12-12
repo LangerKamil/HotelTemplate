@@ -44,9 +44,9 @@
                 {
                     data: "Id",
                     render: function (data, type, customer) {
-                        var deleteBtn = "<a href='/Customer/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
-                        var editBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
-                        return deleteBtn + editBtn
+                        var editBtn = "<a href='/Customer/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
+                        var deleteBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";
+                        return editBtn + deleteBtn
 
                     }
                 }
@@ -71,20 +71,20 @@
                 });
             });
 
-            $("#customers").on("click", ".js-edit", function () {
-                var button = $(this);
-                bootbox.confirm("Do you want to edit this user?", function (result) {
-                    if (result) {
-                        $.ajax({
-                            url: "/api/Services/Customers/" + button.attr("data-customer-id"),
-                            method: "PUT",
-                            success: function (result) {
-                                console.log("Success!");
-                            }
-                        })
-                    }
-                })
-            });
+            //$("#customers").on("click", ".js-edit", function () {
+            //    var button = $(this);
+            //    bootbox.confirm("Do you want to edit this user?", function (result) {
+            //        if (result) {
+            //            $.ajax({
+            //                url: "/api/Services/Customers/" + button.attr("data-customer-id"),
+            //                method: "PUT",
+            //                success: function (result) {
+            //                    console.log("Success!");
+            //                }
+            //            })
+            //        }
+            //    })
+            //});
         })
     </script>
 }

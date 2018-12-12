@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<HotelApplication.Models.Reservation>
 @{
     ViewBag.Title = "Reservations";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -12,15 +12,97 @@
 <button onclick="location.href='@Url.Action("NewForm", "Reservation")'" class="btn btn-primary">Create Reservation</button>
 <hr />
 
-<table id="customers" class="table table-bordered table-hover">
+<table id="reservations" class="table table-bordered table-hover">
     <thead>
         <tr>
             <th>Customer Details</th>
             <th>Room Details</th>
             <th>Status</th>
-            <th>Pricing</th>
+            <th>Payment</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+            var table = $("#reservations").DataTable({
+                ajax: {
+                    url: "/api/Services/Reservations",
+                    dataSrc: "",
+                },
+
+                columns: [
+                    {
+                        data: "Customer",
+                        render: function (data, type, reservation) {
+                            var fullName= data.FirstName+" "+data.LastName;
+                            return "<a href='/Customer/CustomerDetails/" +reservation.CustomerId+"'>"+fullName+"</a>"
+                        }
+                    },
+                    {
+                        data: "Room",
+                        render: function (data, type, reservation) {
+                            return "<a href='/Room/RoomDetails/"+reservation.RoomId+"'>"+reservation.RoomId+"</a>"
+                        }
+                    },
+                    {
+                        data: "RStatus",
+                        render: function (data) {
+                            return " " + data.Name;
+                        }
+                    },
+                    {
+                        data:"Id",
+                    },
+                    {
+                        data: "Id",
+                        render: function (data,type,reservation) {
+                            var confirmBtn = "<button class='btn btn-success js-confirm' data-reservation-id="+ data+ ">Confirm</button>";
+                            var cancelBtn = "<button class='btn btn-warning js-cancel' data-reservation-id=" + data + ">Cancel</button>";
+                            var deleteBtn = "<button class='btn btn-danger js-delete' data-reservation-id=" + data + ">Delete</button>";
+                            return confirmBtn + cancelBtn + deleteBtn;
+                        }
+                    }
+                ]
+            })
+        })
+
+        $("#reservations").on("click", ".js-delete", function () {
+            var button = $(this);
+
+            bootbox.confirm("Are you sure you want to delete this reservation?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/api/Services/Reservations/" + button.attr("data-reservation-id"),
+                        method: "DELETE",
+                        success: function () {
+                            table.row(button.parents("tr")).remove().draw();
+                        }
+                    })
+                }
+            });
+        });
+
+        $("#reservations").on("click", ".js-cancel", function () {
+            var button = $(this);
+
+            bootbox.confirm("Do you want to cancel this reservation?", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "/api/Services/Reservations/" + button.attr("data-reservation-id"),
+                        method: "PUT",
+                        data: "RStatusId",
+                        success: function (data) {
+                            return data = 2
+                            table.draw();
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+}
