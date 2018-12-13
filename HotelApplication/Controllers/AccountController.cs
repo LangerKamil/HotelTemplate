@@ -163,7 +163,7 @@ namespace HotelApplication.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Overview", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
@@ -356,7 +356,7 @@ namespace HotelApplication.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Overview", "Manage");
+                return RedirectToAction("Index", "Manage");
             }
 
             if (ModelState.IsValid)
@@ -392,7 +392,7 @@ namespace HotelApplication.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Overview", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         //
@@ -449,7 +449,7 @@ namespace HotelApplication.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Overview", "Home");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

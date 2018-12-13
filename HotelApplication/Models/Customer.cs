@@ -28,6 +28,7 @@ namespace HotelApplication.Models
         public string PhoneNumber { get; set; }
 
         [Required]
+        [EmailAddress]
         [Display(Name = "Email Address")]
         public string EmailAddress { get; set; }
 

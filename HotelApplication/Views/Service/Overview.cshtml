@@ -1,17 +1,116 @@
-﻿@model HotelApplication.Models.Reservation
+﻿@model HotelApplication.ViewModels.OverviewViewModel
 
 @Html.Partial("_ServiceNavBar")
 
-<h2>Overview</h2>
-<hr/>
-<h2>Customers</h2>
-<h3>
-    @*Total registered: @{
-        var amount = 0;
-        foreach (var a in Model.Customer)
-        {
-            
-        }
-    }*@
-</h3>
+@{
+    var hugeSpace = string.Format(string.Concat(Enumerable.Repeat("&nbsp;", 5)));
 
+    // Customer Model specific variables
+    var customerTotal = CountTotalAmount(Model.Customers);
+
+    // Room Model specific variables
+    var roomTotal = CountTotalAmount(Model.Rooms);
+    var roomTotalAvail = CountTotalAmount(Model.Rooms.Where(r => r.RoomStatusId == 1));
+    var smRoomTotal = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 1));
+    var smRoomAvail = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 1 && r.RoomStatusId == 1));
+    var mdRoomTotal = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 2));
+    var mdRoomAvail = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 2 && r.RoomStatusId == 1));
+    var lgRoomTotal = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 3));
+    var lgRoomAvail = CountTotalAmount(Model.Rooms.Where(r => r.RoomTypeId == 3 && r.RoomStatusId == 1));
+
+    // Reservation Model specific variables
+    var reservCurrentAmount = CountTotalAmount(Model.Reservation);
+    var reservCurrentConfirm = CountTotalAmount(Model.Reservation.Where(r => r.RStatusId == 1));
+    var reservCurrentReject = CountTotalAmount(Model.Reservation.Where(r => r.RStatusId == 2));
+    var reservCurrentPending = CountTotalAmount(Model.Reservation.Where(r => r.RStatusId == 3));
+
+}
+
+@functions{
+
+    public int CountTotalAmount<T>(IEnumerable<T> _model)
+    {
+        var amount = 0;
+
+        foreach (var c in _model)
+        {
+            amount++;
+        }
+
+        return amount;
+    }
+}
+
+
+<h2>Overview</h2>
+<hr />
+<h2>Timetable</h2>
+<br />
+<div id="calendarContainer">
+    <div id="calendar"></div>
+</div>
+<hr />
+<h2>Customers</h2>
+<h4>
+    <span class="statName">Total amount:</span> <span class='computedVal'>@customerTotal</span>
+</h4>
+<hr />
+
+<h2>Rooms</h2>
+<h4>
+    <span class="statName">Total amount:</span> <span class='computedVal'>@roomTotal</span><br />
+    <span class="statName">Total available:</span> <span class='computedVal'>@roomTotalAvail</span><br />
+    <br />
+    <span class="statName">Small Rooms in total:</span> <span class='computedVal'>@smRoomTotal</span><br />
+    <span class="statName">Currently available:</span> <span class='computedVal'>@smRoomAvail</span><br />
+    <br />
+    <span class="statName">Medium Rooms in total:</span> <span class='computedVal'>@mdRoomTotal</span><br />
+    <span class="statName">Currently available:</span> <span class='computedVal'>@mdRoomAvail</span><br />
+    <br />
+    <span class="statName">Large Rooms in total:</span> <span class='computedVal'>@lgRoomTotal</span><br />
+    <span class="statName">Currently available:</span> <span class='computedVal'>@lgRoomAvail</span><br />
+</h4>
+<hr />
+<h2>Reservations</h2>
+<h4>
+    <span class="statName">Currently requested amount:</span> <span class='computedVal'>@reservCurrentAmount</span><br />
+    <br />
+    <span class="statName">Confirmed:</span> <span class='computedVal'>@reservCurrentConfirm</span><br />
+    <span class="statName">Rejected:</span> <span class='computedVal'>@reservCurrentReject</span><br />
+    <span class="statName">Pending:</span> <span class='computedVal'>@reservCurrentPending</span><br />
+</h4>
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+@section Scripts{
+    @Scripts.Render("~/bundles/calendar")
+
+    <script>
+        $(document).ready(function () {
+            $("#calendar").fullCalendar({
+                height: 500,
+
+                themeSystem:'bootstrap4',
+
+                header: {
+                    left: 'today prevYear,prev,next,nextYear',
+                    center: 'title',
+                    right: 'month,agendaWeek,list'
+                },
+
+                defaultView: 'list',
+
+                views: {
+                    month: { // name of view
+                        titleFormat: 'MMMM YYYY'
+                        // other view-specific options here
+                        // put your options and callbacks here
+                    }
+                }
+            })
+        })
+
+    </script>
+}

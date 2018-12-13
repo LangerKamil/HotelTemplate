@@ -80,31 +80,23 @@ namespace HotelApplication.Controllers.API
             _context.SaveChanges();
         }
 
+
         // PUT /api/Services/Reservations/Status/1
         [HttpPut]
-        [Route("api/Services/Reservations/Confirm/{id}")]
-        public void ConfirmReservation(int id)
+        [Route("api/Services/Reservations/Cancel/{id},{status}")]
+        public void ReservationStatus(int id,string status)
         {
             var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
 
             if (reservation == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            reservation.RStatusId = 1;
-            _context.SaveChanges();
-        }
+            if (status == "confirm")
+                reservation.RStatusId = 1;
+                        
+            else
+                reservation.RStatusId = 2;
 
-        // PUT /api/Services/Reservations/Status/1
-        [HttpPut]
-        [Route("api/Services/Reservations/Cancel/{id}")]
-        public void CancelReservation(int id)
-        {
-            var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
-
-            if (reservation == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            reservation.RStatusId = 2;
             _context.SaveChanges();
         }
     }

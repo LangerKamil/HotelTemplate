@@ -1,0 +1,24 @@
+﻿body {
+}
+
+#svcMenu {
+    line-height: 45px;
+    text-align: center;
+}
+
+    #svcMenu > span {
+        margin: 0 20px;
+        padding: 20px;
+    }
+
+.computedVal {
+    color: red;
+    float: right;
+    margin-right: 100px;
+}
+
+.statName {
+    margin-left: 100px;
+}
+
+

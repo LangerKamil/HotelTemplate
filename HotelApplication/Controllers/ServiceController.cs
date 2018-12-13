@@ -9,6 +9,7 @@ using HotelApplication.ViewModels;
 
 namespace HotelApplication.Controllers
 {
+    [Authorize]
     public class ServiceController : Controller
     {
         private ApplicationDbContext _context;
@@ -27,7 +28,14 @@ namespace HotelApplication.Controllers
         [Route("Service/Overview")]
         public ActionResult Overview()
         {
-            return View();
+            var viewModel = new OverviewViewModel
+            {
+                Customers = _context.Customers.ToList(),
+                Rooms = _context.Rooms.ToList(),
+                Reservation = _context.Reservations.ToList()
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Rooms()
