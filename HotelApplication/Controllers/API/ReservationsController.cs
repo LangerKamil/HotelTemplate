@@ -6,6 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using HotelApplication.Models;
 using System.Data.Entity;
+using HotelApplication.DTOs;
+using AutoMapper;
 
 namespace HotelApplication.Controllers.API
 {
@@ -25,31 +27,42 @@ namespace HotelApplication.Controllers.API
 
         // GET /api/Services/Reservations
         [Route("api/Services/Reservations")]
-        public IEnumerable<Reservation> GetReservations()
+        public IEnumerable<ReservationDTO> GetReservations()
         {
-            var reservations = _context.Reservations.Include(r=>r.Customer).Include(r=>r.RStatus).ToList();
+            return _context.Reservations
+                .Include(r=>r.Customer)
+                .Include(r=>r.RStatus)
+                .ToList()
+                .Select(Mapper.Map<Reservation,ReservationDTO>);
 
-            return reservations; 
         }
 
         // GET /api/Services/Reservations/1
         [Route("api/Services/Reservations/{id}")]
-        public Reservation GetReservation(int id)
+        public ReservationDTO GetReservation(int id)
         {
             var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
 
-            return reservation;
+            if(reservation == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            return Mapper.Map<Reservation,ReservationDTO>(reservation);
         }
 
         // PUT /api/Services/Reservations/1
         [HttpPut]
         [Route("api/Services/Reservations/{id}")]
-        public void UpdateReservation(Reservation reservation,int id)
+        public void UpdateReservation(ReservationDTO reservationDTO,int id)
         {
             var reservationInDb = _context.Reservations.SingleOrDefault(r => r.Id == id);
-            reservationInDb.RoomId = reservation.RoomId;
-            reservationInDb.CustomerId = reservation.CustomerId;
-            reservationInDb.RStatusId = reservation.RStatusId;
+
+            if (!ModelState.IsValid)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            if (reservationInDb == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            Mapper.Map(reservationInDb, reservationDTO);
 
             _context.SaveChanges();
         }
@@ -59,6 +72,9 @@ namespace HotelApplication.Controllers.API
         public void DeleteReservation(int id)
         {
             var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
+
+            if (reservation == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
 
             _context.Reservations.Remove(reservation);
             _context.SaveChanges();
@@ -71,6 +87,9 @@ namespace HotelApplication.Controllers.API
         {
             var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
 
+            if (reservation == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
             reservation.RStatusId = 1;
             _context.SaveChanges();
         }
@@ -81,6 +100,9 @@ namespace HotelApplication.Controllers.API
         public void CancelReservation(int id)
         {
             var reservation = _context.Reservations.SingleOrDefault(r => r.Id == id);
+
+            if (reservation == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
 
             reservation.RStatusId = 2;
             _context.SaveChanges();

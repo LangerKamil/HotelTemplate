@@ -1,5 +1,17 @@
-﻿@Html.Partial("_ServiceNavBar")
+﻿@model HotelApplication.Models.Reservation
+
+@Html.Partial("_ServiceNavBar")
 
 <h2>Overview</h2>
-
+<hr/>
+<h2>Customers</h2>
+<h3>
+    @*Total registered: @{
+        var amount = 0;
+        foreach (var a in Model.Customer)
+        {
+            
+        }
+    }*@
+</h3>
 

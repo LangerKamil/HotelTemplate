@@ -15,17 +15,24 @@ namespace HotelApplication.EntityConfigurations
         public CustomerConfiguration()
         {
             Property(c => c.FirstName)
-                .IsOptional();
+                .IsRequired()
+                .HasMaxLength(50);
 
             Property(c => c.LastName)
-                .IsOptional();
+                .IsRequired()
+                .HasMaxLength(50);
 
             Property(c => c.IDNumber)
                 .IsRequired()
                 .HasColumnAnnotation("IDNumber",
                 new IndexAnnotation(new[] {
-                    new IndexAttribute("IDNumber") { IsUnique = true } })); 
+                    new IndexAttribute("IDNumber") { IsUnique = true } }))
+                    .HasMaxLength(35);
+            Property(c => c.PhoneNumber)
+                .HasMaxLength(16);
 
+            Property(c => c.EmailAddress)
+                .HasMaxLength(255);
 
         }
     }

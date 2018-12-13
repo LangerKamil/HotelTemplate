@@ -363,6 +363,10 @@
     <Compile Include="Migrations\201812120451025_ChangingForeignKeysForCustomerAndRoomInReservations.Designer.cs">
       <DependentUpon>201812120451025_ChangingForeignKeysForCustomerAndRoomInReservations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812121235282_MaxLenghtSetForCustomerProperties.cs" />
+    <Compile Include="Migrations\201812121235282_MaxLenghtSetForCustomerProperties.Designer.cs">
+      <DependentUpon>201812121235282_MaxLenghtSetForCustomerProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -716,6 +720,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812120451025_ChangingForeignKeysForCustomerAndRoomInReservations.resx">
       <DependentUpon>201812120451025_ChangingForeignKeysForCustomerAndRoomInReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812121235282_MaxLenghtSetForCustomerProperties.resx">
+      <DependentUpon>201812121235282_MaxLenghtSetForCustomerProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

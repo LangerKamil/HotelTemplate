@@ -42,7 +42,8 @@ namespace HotelApplication.Controllers
 
         public ActionResult Create(Customer customer,Room room)
         {
-            var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId&&r.RoomStatusId==1);
+
+            var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId && r.RoomStatusId == 1);
 
             roomInDb.CheckIn = room.CheckIn;
             roomInDb.CheckOut = room.CheckOut;
