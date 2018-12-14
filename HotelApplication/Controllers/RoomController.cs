@@ -63,5 +63,19 @@ namespace HotelApplication.Controllers
 
             return RedirectToAction("Rooms", "Service");
         }
+
+        [HttpPost]
+        [Route("calendar/PostCalendarData")]
+        public ActionResult PostCalendarData()
+        {
+            return Json(new { title = "Free Pizza", allday = "false", borderColor = "#5173DA", color = "#99ABEA", textColor = "#000000", description = "<p>This is just a fake description for the Free Pizza.</p><p>Nothing to see!</p>", start = "2015-01-04T22:00:49", end = "2015-01-01", url = "http=//www.mikesmithdev.com/blog/worst-job-titles-in-internet-and-info-tech/" });
+        }
+
+        [HttpGet]
+        [Route("calendar/GetCalendarData")]
+        public ActionResult GetCalendarData()
+        {
+            return Json(new { title = "Free Pizza", allday = "false", borderColor = "#5173DA", color = "#99ABEA", textColor = "#000000", description = "<p>This is just a fake description for the Free Pizza.</p><p>Nothing to see!</p>", start = "2015-01-04T22:00:49", end = "2015-01-01", url = "http=//www.mikesmithdev.com/blog/worst-job-titles-in-internet-and-info-tech/" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

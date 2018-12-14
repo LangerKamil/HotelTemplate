@@ -83,16 +83,17 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href='~/Content/fullcalendar/scheduler.min.css' rel='stylesheet' />
 
 @section Scripts{
     @Scripts.Render("~/bundles/calendar")
-
     <script>
         $(document).ready(function () {
             $("#calendar").fullCalendar({
+                schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 height: 500,
 
-                themeSystem:'bootstrap4',
+                themeSystem:'bootstrap3',
 
                 header: {
                     left: 'today prevYear,prev,next,nextYear',
@@ -100,13 +101,36 @@
                     right: 'month,agendaWeek,list'
                 },
 
-                defaultView: 'list',
+                defaultView: 'month',
 
                 views: {
                     month: { // name of view
                         titleFormat: 'MMMM YYYY'
                         // other view-specific options here
                         // put your options and callbacks here
+                    }
+                },
+                events: function (start, end, timezone, callback) {
+                    {
+                        $.ajax({
+                            url: '/api/Services/Reservations',
+                            dataSrc: '',
+                            success: function (doc) {
+                                var events = [];
+                                $.each(doc, function (index, element) {
+                                    events.push({
+                                        title: "Room:"+" "+ element.id +"-->"+ element.roomStatus.name,
+                                        start: element.checkIn,
+                                        end: element.checkOut,
+                                        allDay: true,
+                                        color: element.roomStatus.id == 1 ? "#4ef442" : (element.roomStatus.id == 2 ? "#ff5454" : "#ffac54"),
+                                        url: element.url,
+
+                                    });
+                                });
+                                callback(events);
+                            }
+                        }) //ajax
                     }
                 }
             })

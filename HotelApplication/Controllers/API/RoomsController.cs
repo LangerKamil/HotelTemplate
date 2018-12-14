@@ -51,5 +51,7 @@ namespace HotelApplication.Controllers.API
 
             _context.SaveChanges();
         }
+
+
     }
 }

@@ -34,15 +34,15 @@
 
                 columns: [
                     {
-                        data: "FirstName"
+                        data: "firstName"
                     },
 
                     {
-                        data: "LastName"
+                        data: "lastName"
                     },
 
                 {
-                    data: "Id",
+                    data: "id",
                     render: function (data, type, customer) {
                         var editBtn = "<a href='/Customer/CustomerDetails/" + data + "' class='btn btn-primary' data-customer-id= >Edit</a>";
                         var deleteBtn = "<button class='btn btn-danger js-delete' data-customer-id=" + data + ">Delete</button>";

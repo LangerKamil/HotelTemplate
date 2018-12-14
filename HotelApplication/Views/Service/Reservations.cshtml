@@ -37,32 +37,32 @@
 
                 columns: [
                     {
-                        data: "Id"
+                        data: "id"
                     },
                     {
-                        data: "Customer",
+                        data: "customer",
                         render: function (data, type, reservation) {
-                            var fullName= data.FirstName+" "+data.LastName;
-                            return "<a href='/Customer/CustomerDetails/" +reservation.CustomerId+"'>"+fullName+"</a>"
+                            var fullName= data.firstName+" "+data.lastName;
+                            return "<a href='/Customer/CustomerDetails/" +reservation.customerId+"'>"+fullName+"</a>"
                         }
                     },
                     {
-                        data: "Room",
+                        data: "room",
                         render: function (data, type, reservation) {
-                            return "<a href='/Room/RoomDetails/"+reservation.RoomId+"'>"+reservation.RoomId+"</a>"
+                            return "<a href='/Room/RoomDetails/"+reservation.roomId+"'>"+reservation.roomId+"</a>"
                         }
                     },
                     {
-                        data: "RStatus",
+                        data: "rStatus",
                         render: function (data) {
-                            return " " + data.Name;
+                            return " " + data.name;
                         }
                     },
                     {
-                        data:"Id",
+                        data:"id",
                     },
                     {
-                        data: "Id",
+                        data: "id",
                         render: function (data,type,reservation) {
                             var confirmBtn = "<button class='btn btn-success js-status' data-reservation-id='"+ data+ "' data-status='confirm'>Confirm</button>";
                             var cancelBtn = "<button class='btn btn-warning js-status' data-reservation-id='" + data + "'data-status='cancel'>Cancel</button>";

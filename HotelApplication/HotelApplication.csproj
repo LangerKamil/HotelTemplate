@@ -369,6 +369,10 @@
     <Compile Include="Migrations\201812121235282_MaxLenghtSetForCustomerProperties.Designer.cs">
       <DependentUpon>201812121235282_MaxLenghtSetForCustomerProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812140904195_AddCheckInAndCheckOutToReservations.cs" />
+    <Compile Include="Migrations\201812140904195_AddCheckInAndCheckOutToReservations.Designer.cs">
+      <DependentUpon>201812140904195_AddCheckInAndCheckOutToReservations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -500,6 +504,8 @@
     <Content Include="Content\fullcalendar\fullcalendar.css" />
     <Content Include="Content\fullcalendar\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar\fullcalendar.print.min.css" />
+    <Content Include="Content\fullcalendar\scheduler.css" />
+    <Content Include="Content\fullcalendar\scheduler.min.css" />
     <Content Include="Content\Service.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -585,7 +591,10 @@
     <Content Include="Scripts\datepicker\css\datepicker.css" />
     <Content Include="Scripts\datepicker\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Scripts\fullcalendar\jquery-ui.custom.min.js" />
     <Content Include="Scripts\fullcalendar\moment.min.js" />
+    <Content Include="Scripts\fullcalendar\scheduler.js" />
+    <Content Include="Scripts\fullcalendar\scheduler.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -734,6 +743,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812121235282_MaxLenghtSetForCustomerProperties.resx">
       <DependentUpon>201812121235282_MaxLenghtSetForCustomerProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812140904195_AddCheckInAndCheckOutToReservations.resx">
+      <DependentUpon>201812140904195_AddCheckInAndCheckOutToReservations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

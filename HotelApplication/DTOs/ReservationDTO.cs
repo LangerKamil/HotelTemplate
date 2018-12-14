@@ -17,5 +17,7 @@ namespace HotelApplication.DTOs
         public List<RoomType> RoomTypes { get; set; }
         public byte RStatusId { get; set; }
         public ReservationStatus RStatus { get; set; }
+        public DateTime CheckIn { get; set; }
+        public DateTime CheckOut { get; set; }
     }
 }

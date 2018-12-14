@@ -65,23 +65,23 @@
                 ajax: {
                     url: "/api/Services/Rooms",
                     dataSrc: function (json) {
-                        return json.filter(c=> c.RoomTypeId === roomSize);
+                        return json.filter(c=> c.roomTypeId === roomSize);
                         //return json.slice(0,20);
                     },
                 },
 
                 columns: [
                     {
-                        data: "Id"
+                        data: "id"
                     },
                     {
-                        data: "RoomStatus",
+                        data: "roomStatus",
                         render: function (data) {
-                            return " " + data.Name;
+                            return " " + data.name;
                         }
                     },
                 {
-                    data: "Id",
+                    data: "id",
                     render: function (data) {
                         return "<a href='/Room/RoomDetails/" + data + "' class='btn btn-primary' data-customer-id= >View Details</a>";
 
