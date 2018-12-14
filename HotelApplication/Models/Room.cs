@@ -22,6 +22,7 @@ namespace HotelApplication.Models
 
         [Display(Name ="Room Size")]
         public RoomType RoomType { get; set; }
+
         public byte RoomStatusId { get; set; }
         public RoomStatus RoomStatus { get; set; }
     }

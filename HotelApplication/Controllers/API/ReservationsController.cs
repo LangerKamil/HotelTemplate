@@ -31,6 +31,7 @@ namespace HotelApplication.Controllers.API
         {
             return _context.Reservations
                 .Include(r=>r.Customer)
+                .Include(r=>r.Room)
                 .Include(r=>r.RStatus)
                 .ToList()
                 .Select(Mapper.Map<Reservation,ReservationDTO>);

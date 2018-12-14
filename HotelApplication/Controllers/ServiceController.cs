@@ -28,6 +28,27 @@ namespace HotelApplication.Controllers
         [Route("Service/Overview")]
         public ActionResult Overview()
         {
+            // Initializing room status
+            foreach (var a in  _context.Rooms)
+            {
+                a.RoomStatusId = 1;
+            }
+
+            // Updating room status
+            var today = DateTime.Now;
+            var reservationList = _context.Reservations.ToList();
+
+            foreach (var a in reservationList.Where(r => r.CheckIn <= today && r.CheckOut > today))
+            {
+                var id = a.RoomId;
+
+                var room = _context.Rooms.Where(r => r.Id == id).SingleOrDefault();
+                room.RoomStatusId = 2;
+                
+            }
+
+            _context.SaveChanges();
+
             var viewModel = new OverviewViewModel
             {
                 Customers = _context.Customers.ToList(),

@@ -40,10 +40,28 @@ namespace HotelApplication.Controllers
             return View();
         }
 
-        public ActionResult Create(Customer customer,Room room,Reservation reserv)
+        public ActionResult Create(Customer customer, Room room, Reservation reserv)
         {
 
+            if (_context.Reservations.Where(
+                r => r.Room.RoomTypeId == room.RoomTypeId &&
+                r.Room.RoomStatusId == 1 &&
+                r.CheckIn <= reserv.CheckIn &&
+                r.CheckOut > reserv.CheckIn).FirstOrDefault()!=null)
+            {
+                var viewModel = new Reservation()
+                {
+                    Customer = new Customer(),
+                    Room = new Room(),
+                    Genders = _context.Genders.ToList(),
+                    RoomTypes = _context.RoomTypes.ToList(),
+                };
+                return View("NewForm", viewModel);
+                //return JavaScript(alert("Hello this is an alert"));
+            }
+
             var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId && r.RoomStatusId == 1);
+
 
             roomInDb.RoomStatusId = 2;
 

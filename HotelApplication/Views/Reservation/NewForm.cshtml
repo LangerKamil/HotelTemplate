@@ -71,12 +71,12 @@
             @Html.DropDownListFor(m => m.Room.RoomTypeId, new SelectList(Model.RoomTypes, "Id", "Name"), new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Room.RoomTypeId)
         </div>
-        <div class="form-group input-group-md">
+        <div id="status" class="form-group input-group-md">
             @Html.LabelFor(r => r.CheckIn)
             @Html.TextBoxFor(r => r.CheckIn, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(m => m.Room.CheckIn)
         </div>
-        <div class="form-group input-group-md">
+        <div id="status" class="form-group input-group-md">
             @Html.LabelFor(r => r.CheckOut)
             @Html.TextBoxFor(r => r.CheckOut, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(r => r.CheckOut)
@@ -92,6 +92,7 @@
     <script type="text/javascript">
 
         $('.datepicker').datepicker();
+
 
     </script>
 

@@ -3,6 +3,13 @@
 @Html.Partial("_ServiceNavBar")
 
 @{
+    //var today = DateTime.Now;
+
+    //foreach (var a in Model.Reservation.Where(r=>r.CheckIn<=today&&r.CheckOut>today))
+    //{
+    //    a.Room.RoomStatusId = 2;
+    //}
+
     var hugeSpace = string.Format(string.Concat(Enumerable.Repeat("&nbsp;", 5)));
 
     // Customer Model specific variables
@@ -73,7 +80,7 @@
 <hr />
 <h2>Reservations</h2>
 <h4>
-    <span class="statName">Currently requested amount:</span> <span class='computedVal'>@reservCurrentAmount</span><br />
+    <span class="statName">Current requests:</span> <span class='computedVal'>@reservCurrentAmount</span><br />
     <br />
     <span class="statName">Confirmed:</span> <span class='computedVal'>@reservCurrentConfirm</span><br />
     <span class="statName">Rejected:</span> <span class='computedVal'>@reservCurrentReject</span><br />
@@ -89,6 +96,7 @@
     @Scripts.Render("~/bundles/calendar")
     <script>
         $(document).ready(function () {
+
             $("#calendar").fullCalendar({
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 height: 500,
@@ -119,11 +127,11 @@
                                 var events = [];
                                 $.each(doc, function (index, element) {
                                     events.push({
-                                        title: "Room:"+" "+ element.id +"-->"+ element.roomStatus.name,
+                                        title: "Room:"+" "+ element.roomId +"-->"+ element.rStatus.name,
                                         start: element.checkIn,
                                         end: element.checkOut,
                                         allDay: true,
-                                        color: element.roomStatus.id == 1 ? "#4ef442" : (element.roomStatus.id == 2 ? "#ff5454" : "#ffac54"),
+                                        color: element.rStatusId == 1 ? "#a8ff7c" : (element.rStatusId == 2 ? "#ff5454" : "#ffac54"),
                                         url: element.url,
 
                                     });
