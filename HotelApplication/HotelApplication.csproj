@@ -373,6 +373,14 @@
     <Compile Include="Migrations\201812140904195_AddCheckInAndCheckOutToReservations.Designer.cs">
       <DependentUpon>201812140904195_AddCheckInAndCheckOutToReservations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812141625148_AddRoomStatusIdToReservations.cs" />
+    <Compile Include="Migrations\201812141625148_AddRoomStatusIdToReservations.Designer.cs">
+      <DependentUpon>201812141625148_AddRoomStatusIdToReservations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812141629165_AddRoomStatusIdToReservations1.cs" />
+    <Compile Include="Migrations\201812141629165_AddRoomStatusIdToReservations1.Designer.cs">
+      <DependentUpon>201812141629165_AddRoomStatusIdToReservations1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -746,6 +754,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812140904195_AddCheckInAndCheckOutToReservations.resx">
       <DependentUpon>201812140904195_AddCheckInAndCheckOutToReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812141625148_AddRoomStatusIdToReservations.resx">
+      <DependentUpon>201812141625148_AddRoomStatusIdToReservations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812141629165_AddRoomStatusIdToReservations1.resx">
+      <DependentUpon>201812141629165_AddRoomStatusIdToReservations1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

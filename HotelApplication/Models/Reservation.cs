@@ -16,8 +16,8 @@ namespace HotelApplication.Models
         public byte RoomId { get; set; }
         public Room Room { get; set; }
 
-        //public byte RoomStatusId { get; set; }
-        //public RoomStatus RoomStatus { get; set; }
+        public byte RoomStatusId { get; set; }
+        public RoomStatus RoomStatus { get; set; }
 
         public List<RoomType> RoomTypes { get; set; }
 

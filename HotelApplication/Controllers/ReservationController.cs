@@ -6,14 +6,19 @@ using System.Web.Mvc;
 using HotelApplication.Models;
 using HotelApplication.ViewModels;
 using System.Data.Entity;
+using HotelApplication.Classes;
+
+
 namespace HotelApplication.Controllers
 {
     public class ReservationController : Controller
     {
         private ApplicationDbContext _context;
+        private DateChecker _datechecker;
 
         public ReservationController()
         {
+            _datechecker = new DateChecker();
             _context = new ApplicationDbContext();
         }
 
@@ -43,25 +48,12 @@ namespace HotelApplication.Controllers
         public ActionResult Create(Customer customer, Room room, Reservation reserv)
         {
 
-            if (_context.Reservations.Where(
-                r => r.Room.RoomTypeId == room.RoomTypeId &&
-                r.Room.RoomStatusId == 1 &&
-                r.CheckIn <= reserv.CheckIn &&
-                r.CheckOut > reserv.CheckIn).FirstOrDefault()!=null)
-            {
-                var viewModel = new Reservation()
-                {
-                    Customer = new Customer(),
-                    Room = new Room(),
-                    Genders = _context.Genders.ToList(),
-                    RoomTypes = _context.RoomTypes.ToList(),
-                };
-                return View("NewForm", viewModel);
-                //return JavaScript(alert("Hello this is an alert"));
-            }
 
-            var roomInDb = _context.Rooms.First(r => r.RoomTypeId == room.RoomTypeId && r.RoomStatusId == 1);
+            if (_datechecker.CheckDateAvailability(room, reserv, _context)==null)
 
+                return RedirectToAction("Reservations","Service");
+
+            var roomInDb = _datechecker.CheckDateAvailability(room, reserv, _context);
 
             roomInDb.RoomStatusId = 2;
 
@@ -70,11 +62,12 @@ namespace HotelApplication.Controllers
 
             var reservation = new Reservation
             {
-                Customer = _context.Customers.FirstOrDefault(c => c.IDNumber == customer.IDNumber),
+                Customer = _context.Customers.First(c => c.IDNumber == customer.IDNumber),
                 Room = roomInDb,
                 RStatusId = 3,
                 CheckIn = reserv.CheckIn,
-                CheckOut = reserv.CheckOut
+                CheckOut = reserv.CheckOut,
+                RoomStatusId= 2
             };
 
             _context.Reservations.Add(reservation);
