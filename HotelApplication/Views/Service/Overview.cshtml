@@ -5,7 +5,7 @@
 @{
     //var today = DateTime.Now;
 
-    //foreach (var a in Model.Reservation.Where(r=>r.CheckIn<=today&&r.CheckOut>today))
+    //foreach (var a in Model.Reservation.Where(r => r.CheckIn <= today && r.CheckOut > today))
     //{
     //    a.Room.RoomStatusId = 2;
     //}
@@ -35,11 +35,11 @@
 
 @functions{
 
-    public int CountTotalAmount<T>(IEnumerable<T> _model)
+    public int CountTotalAmount<T>(IEnumerable<T> model)
     {
         var amount = 0;
 
-        foreach (var c in _model)
+        foreach (var c in model)
         {
             amount++;
         }

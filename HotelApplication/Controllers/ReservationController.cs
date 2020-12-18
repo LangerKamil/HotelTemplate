@@ -49,9 +49,9 @@ namespace HotelApplication.Controllers
         {
 
 
-            if (_datechecker.CheckDateAvailability(room, reserv, _context)==null)
+            if (_datechecker.CheckDateAvailability(room, reserv, _context) == null)
 
-                return RedirectToAction("Reservations","Service");
+                return RedirectToAction("Reservations", "Service");
 
             var roomInDb = _datechecker.CheckDateAvailability(room, reserv, _context);
 

@@ -42,7 +42,7 @@
         </div>
         <div class="form-group input-group-md">
             @Html.LabelFor(c => c.Customer.DateOfBirth)
-            @Html.TextBoxFor(c => c.Customer.DateOfBirth, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(c => c.Customer.DateOfBirth, "   {0:MMM d yyyy}", new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(c => c.Customer.DateOfBirth)
         </div>
 
@@ -73,12 +73,12 @@
         </div>
         <div id="status" class="form-group input-group-md">
             @Html.LabelFor(r => r.CheckIn)
-            @Html.TextBoxFor(r => r.CheckIn, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
-            @Html.ValidationMessageFor(m => m.Room.CheckIn)
+            @Html.TextBoxFor(r => r.CheckIn, "   {0:MMM d yyyy}", new { @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.CheckIn)
         </div>
         <div id="status" class="form-group input-group-md">
             @Html.LabelFor(r => r.CheckOut)
-            @Html.TextBoxFor(r => r.CheckOut, "   {0:d MMM yyyy}", new { @class = "form-control datepicker" })
+            @Html.TextBoxFor(r => r.CheckOut, "   {0:MMM d yyyy}", new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(r => r.CheckOut)
         </div>
     </div>

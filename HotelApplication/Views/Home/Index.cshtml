@@ -1,8 +1,244 @@
-﻿@{
+﻿
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<style>
 
-</div>
+    /* Gallery container */
+    .container-slideshow {
+        margin: 0;
+        width: 100%;
+        height: 600px;
+        background-image: url(../../Images/christian-lambert-hlOpCML8twI-unsplash.jpg);
+        background-size: 1110px 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /*.img1{
+        width:1110px;
+        height:inherit;
+        position:relative;
+        margin:auto;
+    }*/
+
+    /* Sides of the gallery */
+    .cnt-hdr-left {
+        width: 32%;
+        height: inherit;
+        background-position: left;
+        display: block;
+        float: left;
+    }
+
+    .cnt-hdr-right {
+        width: 32%;
+        height: inherit;
+        background-position: right;
+        display: block;
+        float: right;
+    }
+
+    /* Gallery sides shadows */
+    .blur-left {
+        position: relative;
+        height: inherit;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: #56ccf2;
+        background: -webkit-linear-gradient(to left, #555555, #f5f5f5);
+        background: linear-gradient(to left, #555555, #f5f5f5);
+        z-index: 1;
+        opacity: 0.4;
+    }
+
+    .blur-right {
+        position: relative;
+        height: inherit;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: #56ccf2;
+        background: -webkit-linear-gradient(to right, #555555, #f5f5f5);
+        background: linear-gradient(to right, #555555, #f5f5f5);
+        z-index: 1;
+        opacity: 0.4;
+    }
+
+    /* Next & previous buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        width: auto;
+        padding: 16px;
+        margin-top: -22px;
+        color: white;
+        font-weight: bold;
+        font-size: 72px;
+        transition: 0.6s ease;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+    }
+
+    /* Position the "prev button" to the right */
+    .prev {
+        position: absolute;
+        top: 238px;
+        right: 30px;
+        border-radius: 3px 0 0 3px;
+    }
+
+    .next {
+        position: absolute;
+        top: 238px;
+        left: 30px;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black color with a little bit see-through */
+        .prev:hover, .next:hover {
+            color: rgba(0,0,0,0.8);
+        }
+
+    .ml12 {
+        position:relative;
+        margin-left:auto;
+        margin-top:-1px;
+        padding-top:400px;
+        text-align:center;
+        font-weight: 200;
+        font-size: 2.8em;
+        color:white;
+        text-shadow:inherit;
+        text-transform: uppercase;
+        letter-spacing: 0.5em;
+    }
+
+    .ml12 .letter {
+        display: inline-block;
+        line-height: 1em;
+        }
+</style>
+
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+
+
+        </div>
+    </div>
+    
+    <script>
+        var slideShow = document.getElementsByClassName("container-slideshow");
+        var currentBackground = 0;
+        var currentTxt = 0
+        var backgrounds = [];
+        var galleryTxt = [];
+        var clicked = 0;
+        var textWrapper = document.querySelector('.ml12');
+
+
+        backgrounds[0] = '../../Images/christian-lambert-hlOpCML8twI-unsplash.jpg';
+        backgrounds[1] = '../../Images/rio-lecatompessy-p77qNCTFEJQ-unsplash.jpg';
+        backgrounds[2] = '../../Images/sung-jin-cho-BkNDvyEfDUw-unsplash.jpg';
+        backgrounds[3] = '../../Images/edvin-johansson-rlwE8f8anOc-unsplash.jpg';
+        backgrounds[4] = '../../Images/duan-xiaoyu-4Ef50_zcXOM-unsplash.jpg';
+
+        galleryTxt[0] = 'Rich interior design';
+        galleryTxt[1] = 'Lives up to expectations';
+        galleryTxt[2] = 'Stunning views';
+        galleryTxt[3] = 'Simple pleasure';
+        galleryTxt[4] = 'Beautiful design';
+
+
+        function changeBackground() {
+
+            94+41+23
+            if (clicked == 1) { currentBackground--; currentTxt--; }
+            else {
+                currentBackground++; currentTxt++;
+            }
+            if (currentBackground > 4) { currentBackground = 0; currentTxt = 0; }
+            else if (currentBackground < 0) { currentBackground = 4; currentTxt = 4; }
+
+
+            $(".container-slideshow").fadeOut(1000, function () {
+                textWrapper.innerHTML = galleryTxt[currentTxt];
+            textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+
+                anime.timeline({ loop: false })
+                    .add({
+                        targets: '.ml12 .letter',
+                        translateX: [40, 0],
+                        translateZ: 0,
+                        opacity: [0, 1],
+                        easing: "easeOutExpo",
+                        duration: 2000,
+                        delay: (el, i) => 1000 + 30 * i
+                    }).add({
+                        targets: '.ml12 .letter',
+                        translateX: [0, -30],
+                        opacity: [1, 0],
+                        easing: "easeInExpo",
+                        duration: 1100,
+                        delay: (el, i) => 4100 + 30 * i
+                    });
+
+                $(".container-slideshow").css({
+                    'background-image': "url('" + backgrounds[currentBackground] + "')"
+                });
+                $(".container-slideshow").fadeIn(1000);
+
+                    
+            });
+
+
+            if (clicked == 0)
+                setTimeout(changeBackground, 10000);
+            else clicked = 0;
+
+
+
+        }
+
+        function plusSlides() {
+            clicked = 2;
+            changeBackground();
+
+        }
+
+        function minusSlides() {
+            clicked = 1;
+            changeBackground();
+        }
+
+        $(document).ready(function () {
+            setTimeout(changeBackground);
+        });
+
+            //function changeText(n) {
+            //    var i;
+            //    var slides = document.getElementsByClassName("ml12");
+            //    //var dots = document.getElementsByClassName("dot");
+            //    if (n > slides.length) { slideIndex = 1 }
+            //    if (n < 1) { slideIndex = slides.length }
+            //    for (i = 0; i < slides.length; i++) {
+            //        slides[i].style.display = "none";
+            //    }
+            //    for (i = 0; i < dots.length; i++) {
+            //        dots[i].className = dots[i].className.replace(" active", "");
+            //    }
+            //    slides[slideIndex - 1].style.display = "block";
+            //    dots[slideIndex - 1].className += " active";
+            //}
+
+
+    </script>
+</body>
 

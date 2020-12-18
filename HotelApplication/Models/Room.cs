@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HotelApplication.Models
 {
     public class Room
     {
+
+        public Room()
+        {
+            CheckIn = DateTime.Now;
+            CheckOut = DateTime.Now;
+        }
         public byte Id { get; set; }
 
         [Required]

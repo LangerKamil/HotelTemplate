@@ -29,10 +29,10 @@ namespace HotelApplication.Controllers
         public ActionResult Overview()
         {
             // Initializing room status
-            foreach (var a in  _context.Rooms)
-            {
-                a.RoomStatusId = 1;
-            }
+            //foreach (var a in  _context.Rooms)
+            //{
+            //    a.RoomStatusId = 1;
+            //}
 
             // Updating room status
             var today = DateTime.Now;

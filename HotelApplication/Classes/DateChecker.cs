@@ -19,6 +19,7 @@ namespace HotelApplication.Classes
                 r.CheckIn <= _new.CheckIn && r.CheckOut >= _new.CheckOut ||
                 r.CheckIn <= _new.CheckIn && r.CheckOut > _new.CheckIn ||
                 r.CheckIn < _new.CheckOut && r.CheckOut >= _new.CheckOut))
+               
             {
                 tempReservList.Add(a);
             }

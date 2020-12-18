@@ -64,8 +64,8 @@
                     {
                         data: "id",
                         render: function (data,type,reservation) {
-                            var confirmBtn = "<button class='btn btn-success js-status' data-reservation-id='"+ data+ "' data-status='confirm'>Confirm</button>";
-                            var cancelBtn = "<button class='btn btn-warning js-status' data-reservation-id='" + data + "'data-status='cancel'>Cancel</button>";
+                            var confirmBtn = "<button class='btn btn-success js-confirm' data-reservation-id='"+ data+ "' data-status='confirm'>Confirm</button>";
+                            var cancelBtn = "<button class='btn btn-warning js-cancel' data-reservation-id='" + data + "'data-status='cancel'>Cancel</button>";
                             var deleteBtn = "<button class='btn btn-danger js-delete' data-reservation-id=" + data + ">Delete</button>";
                             return confirmBtn + cancelBtn + deleteBtn;
                         }
@@ -88,14 +88,31 @@
                 });
             });
 
-            $("#reservations").on("click", ".js-status", function () {
+            $("#reservations").on("click", ".js-cancel", function () {
                 var button = $(this);
 
                 bootbox.confirm("Do you want to cancel this reservation?", function (result) {
                     if (result) {
 
                         $.ajax({
-                            url: "/api/Services/Reservations/Cancel/" + button.attr("data-reservation-id") + "," + button.attr("data-status"),
+                            url: "/api/Services/Reservations/Status/" + button.attr("data-reservation-id") + "," + button.attr("data-status"),
+                            method: "PUT",
+                            success: function () {
+                                table.ajax.reload();
+                            }
+                        })
+                    }
+                });
+            });
+
+            $("#reservations").on("click", ".js-confirm", function () {
+                var button = $(this);
+
+                bootbox.confirm("Do you want to confirm this reservation?", function (result) {
+                    if (result) {
+
+                        $.ajax({
+                            url: "/api/Services/Reservations/Status/" + button.attr("data-reservation-id") + "," + button.attr("data-status"),
                             method: "PUT",
                             success: function () {
                                 table.ajax.reload();

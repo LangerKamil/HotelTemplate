@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/lib")
 
 </head>
 <body>
@@ -29,15 +31,34 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Hotel Template</p>
-        </footer>
+
+    <div class="container-slideshow">
+
+        @*<div class="cnt-hdr-left">
+            <div class="blur-left">
+                <a class="prev" style="text-decoration: none;" onclick="minusSlides()">&#10094;</a>
+            </div>
+        </div>
+
+        <div class="cnt-hdr-right">
+            <div class="blur-right">
+                <a class="next" style="text-decoration: none;" onclick="plusSlides()">&#10095;</a>
+            </div>
+        </div>*@
+        <div>
+            <h1 class="ml12"></h1>
+        </div>
     </div>
 
-    @Scripts.Render("~/bundles/lib")
-    @RenderSection("scripts", required: false)
-</body>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Hotel Template</p>
+            </footer>
+        </div>
+
+        @Scripts.Render("~/bundles/lib")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>

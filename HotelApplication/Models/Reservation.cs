@@ -8,6 +8,13 @@ namespace HotelApplication.Models
 {
     public class Reservation
     {
+        public Reservation()
+        {
+            CheckIn = DateTime.Now;
+            CheckOut = DateTime.Now;
+
+        }
+
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
@@ -25,7 +32,7 @@ namespace HotelApplication.Models
         public ReservationStatus RStatus { get; set; }
 
         [Required]
-        [Display(Name = "Departure Date")]
+        [Display(Name = "Arrival Date")]
         public DateTime CheckIn { get; set; }
 
         [Required]
